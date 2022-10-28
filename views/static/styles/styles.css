@@ -1,0 +1,151 @@
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+    margin: 0;
+}
+
+.container {
+    width: 400px;
+    height: 370px;
+    background-color: #009ACD;
+    text-align: center;
+    margin: auto;
+}
+
+.headercontainer {
+    width: 400px;
+    height: 50px;
+    background-color: #009ACD;
+    text-align: center;
+    margin: auto;
+}
+
+.logincontainer {
+    width: 400px;
+    height: 160px;
+    background-color: #009ACD;
+    text-align: center;
+    margin: auto;
+}
+
+.text {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.text2 {
+    position: relative;
+    text-align: center;
+    color: #333;
+}
+
+.three-cols {
+    position: relative;
+    color: #333;
+}
+
+.text3 {
+    position: relative;
+    text-align: left;
+    color: #333;
+}
+
+.text4 {
+    position: relative;
+    padding-left: 20%;
+    text-align: left;
+    color: #333;
+}
+
+/* Create three unequal columns that floats next to each other */
+.column {
+    float: left;
+    padding: 10px;
+}
+
+.criteria {
+    display: flex;
+    flex-direction: row;
+}
+.columnOne {
+    width: 30%;
+    box-sizing: border-box;
+    /*whatever element it is applied to...*/
+    padding: 0 0 0 10px;
+}
+.columnTwo {
+    width: 20%;
+    box-sizing: border-box;
+    /*whatever element it is applied to...*/
+    border-top: 0;
+    border-bottom: 0;
+    border-left: 3px solid blue;
+    border-right: 3px solid blue;
+    padding: 0 0 0 10px;
+}
+.columnThree {
+    display:flex;
+    flex-direction: column;
+    width: 50%;
+    box-sizing: border-box;
+    /*whatever element it is applied to...*/
+    border-top: 0;
+    border-bottom: 0;
+    border-left: 0;
+    padding: 0 0 0 10px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.alert-prompt.information {
+    padding: 20px;
+    background-color: #009ACD; /* Blue */
+    opacity: 1;
+    transition: opacity 0.6s; /* 600ms to fade out */
+    color: white;
+    margin-bottom: 15px;
+}
+
+.alert-prompt.error {
+    padding: 20px;
+    background-color: #f44336; /* Red */
+    opacity: 1;
+    transition: opacity 0.6s; /* 600ms to fade out */
+    color: white;
+    margin-bottom: 15px;
+}
+
+.alert-prompt.success {
+    padding: 20px;
+    background-color: #04AA6D; /* gREEN */
+    opacity: 1;
+    transition: opacity 0.6s; /* 600ms to fade out */
+    color: white;
+    margin-bottom: 15px;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+    .column {
+        width: 100%;
+    }
+}
+@media (max-width: 767px) {
+    .criteria, .columnThree {
+        display:block;
+    }
+    .columnOne, .columnTwo, .columnThree {
+        width:100%;
+    }
+}

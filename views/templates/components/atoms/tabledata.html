@@ -1,0 +1,13 @@
+{{ if eq .Category "default" }}
+    {{ if ne .Class "" }}
+        <td class={{ .Class }}>{{ .Value }}</td>
+    {{ else }}
+        <td>{{ .Value }}</td>
+    {{ end }}
+{{ else if eq .Category "link" }}
+    {{ if ne .Class "" }}
+        <td class={{ .Class }}>{{ template "templates/components/atoms/links.html" .Link }}</td>
+    {{ else }}
+        <td>{{ template "templates/components/atoms/links.html" .Link }}</td>
+    {{ end }}
+{{ end }}

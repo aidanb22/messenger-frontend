@@ -1,0 +1,22 @@
+{{ template "templates/components/organisms/header.html" . }}
+
+{{ template "templates/components/atoms/headings.html" .Heading }}
+
+{{if .Auth.Authenticated}}
+<div class="text2">
+    <h1>Welcome, {{ .Auth.Username }}</h1>
+    <img src="/static/assets/messagelogo.jpg" />
+</div>
+{{else}}
+<div class="form-container">
+    {{ template "templates/components/organisms/forms.html" .Form }}
+</div>
+{{end}}
+
+<div class="text2">
+    {{ if not .Auth.Authenticated }}
+        <a href="/login">or login</a><br>
+    {{ end }}
+</div>
+
+{{ template "templates/components/organisms/footer.html" . }}

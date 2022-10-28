@@ -1,0 +1,27 @@
+{{ template "templates/components/organisms/header.html" . }}
+
+{{ if .Auth.Authenticated }}
+    {{ if .Status }}
+        {{ template "templates/components/atoms/alerts.html" .Alert }}
+    {{ end }}
+    {{ template "templates/components/atoms/headings.html" .Heading }}
+    {{ if eq .Route "account/" }}
+        <div class="text2">
+            <a href="/account/settings">Account Settings</a><br>
+        </div>
+    {{ else if eq .SubRoute "settings" }}
+        <div class="criteria">
+            {{ template "templates/components/abstractions/settings.html" .Settings }}
+        </div>
+    {{ else if eq .SubRoute "password" }}
+        <div class="form-container">
+            {{ template "templates/components/organisms/forms.html" .PasswordForm }}
+        </div>
+    {{ else }}
+        <a href="/login">Please login to view</a><br>
+    {{ end }}
+{{ else }}
+    <a href="/login">Please login to view</a><br>
+{{ end }}
+
+{{ template "templates/components/organisms/footer.html" . }}

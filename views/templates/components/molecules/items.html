@@ -1,0 +1,38 @@
+{{ if ne .Class "" }}
+    {{ if ne .Id "" }}
+        <li class={{ .Class }} id={{ .Id }}>
+    {{ else }}
+        <li class={{ .Class }}>
+    {{ end }}
+{{ else }}
+    {{ if ne .Id "" }}
+        <li id={{ .Id }}>
+    {{ else }}
+        <li>
+    {{ end }}
+{{ end }}
+
+{{ if eq .Category "default" }}
+    {{ .Label }}
+{{ end }}
+
+{{ if eq .Category "link" }}
+    {{ range .Options }}
+    {{ if eq .Category "delete" }}
+        {{ template "templates/components/atoms/buttons.html" .Button }}
+        {{ template "templates/components/organisms/forms.html" .Form }}
+    {{ else if eq .Category "checkbox" }}
+        {{ template "templates/components/atoms/inputs.html" .Input }}
+    {{ end }}
+    {{ end }}
+    {{ template "templates/components/atoms/links.html" .Link }}
+{{ end }}
+
+{{ if eq .Category "div" }}
+    {{ template "templates/components/molecules/divs.html" .Div }}
+{{ end }}
+
+{{ if eq .Category "button" }}
+    {{ template "templates/components/atoms/buttons.html" .Button }}
+{{ end }}
+</li>

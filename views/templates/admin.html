@@ -1,0 +1,54 @@
+{{ template "templates/components/organisms/header.html" . }}
+<div>
+    {{ if .Auth.Authenticated }}
+    {{ if .Status }}
+        {{ template "templates/components/atoms/alerts.html" .Alert }}
+    {{ end }}
+    {{ if eq .Auth.Role "admin" }}
+        {{ template "templates/components/atoms/headings.html" .Heading }}
+        {{ if eq .SubRoute "" }}
+            <div class="text2">
+                {{ if .Auth.RootAdmin }}
+                    <a href="/admin/groups">Groups</a><br>
+                    <a href="/admin/users-table">Users</a><br>
+                {{ else }}
+                    <a href="/admin/groups/{{ .Auth.GroupId }}">Group</a><br>
+                {{ end }}
+            </div>
+        {{ else if eq .SubRoute "groups" }}
+            {{ if eq .Id "" }}
+                <div class="list-container">
+                    {{ template "templates/components/organisms/lists.html" .ListGroups }}
+                </div>
+                {{ if .Auth.RootAdmin }}
+                    {{ template "templates/components/organisms/forms.html" .CreateGroup }}
+                {{ end }}
+            {{ else }}
+                <div class="criteria">
+                    {{ template "templates/components/abstractions/settings.html" .GroupSettings }}
+                </div>
+                {{ template "templates/components/organisms/forms.html" .CreateUser }}
+            {{ end }}
+        {{ else if eq .SubRoute "users" }}
+            {{ if eq .Id "" }}
+                <div class="list-container">
+                    {{ template "templates/components/organisms/lists.html" .ListUsers }}
+                <div>
+                {{ template "templates/components/organisms/forms.html" .CreateUser }}
+            {{ else }}
+                <div class="criteria">
+                    {{ template "templates/components/abstractions/settings.html" .UserSettings }}
+                </div>
+            {{ end }}
+        {{ else if eq .SubRoute "users-table" }}
+            {{ if .Auth.RootAdmin }}
+                <div class="table-container">
+                    {{ template "templates/components/organisms/tables.html" .UsersTable }}
+                </div>
+                {{ template "templates/components/organisms/forms.html" .CreateUser }}
+            {{ end }}
+        {{ end }}
+    {{ end }}
+    {{ end }}
+</div>
+{{ template "templates/components/organisms/footer.html" . }}

@@ -1,0 +1,10 @@
+{{ if eq .Category "default" }}
+{{ if ne .Class "" }}
+<a class={{ .Class }} href={{ .Ref }}>{{ .Label }}</a>
+{{ else }}
+<a href={{ .Ref }}>{{ .Label }}</a>
+{{ end }}
+{{ end }}
+{{ if .Break }}
+<br>
+{{ end }}

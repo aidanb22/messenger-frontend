@@ -1,0 +1,51 @@
+{{ if .Script }}
+    {{ template "templates/components/atoms/scripts.html" .Script }}
+{{ end }}
+{{ if .SearchBar }}
+    {{ template "templates/components/atoms/inputs.html" .SearchBar }}
+{{ end }}
+
+{{ if eq .Category "unordered" }}
+    {{ if ne .Class "" }}
+        {{ if ne .Id "" }}
+            <ul class={{ .Class }} id={{ .Id }}>
+        {{ else }}
+            <ul class={{ .Class }}>
+        {{ end }}
+    {{ else }}
+        {{ if ne .Id "" }}
+            <ul id={{ .Id }}>
+        {{ else }}
+            <ul>
+        {{ end }}
+    {{ end }}
+{{ end }}
+
+{{ if eq .Category "ordered" }}
+    {{ if ne .Class "" }}
+       {{ if ne .Id "" }}
+           <ol class={{ .Class }} id={{ .Id }}>
+       {{ else }}
+           <ol class={{ .Class }}>
+       {{ end }}
+    {{ else }}
+        {{ if ne .Id "" }}
+           <ol id={{ .Id }}>
+        {{ else }}
+           <ul>
+        {{ end }}
+    {{ end }}
+{{ end }}
+
+
+{{range .Items}}
+{{ template "templates/components/molecules/items.html" . }}
+{{end}}
+
+{{ if eq .Category "unordered" }}
+</ul>
+{{ end }}
+
+{{ if eq .Category "ordered" }}
+</ol>
+{{ end }}

@@ -1,0 +1,39 @@
+
+{{ if eq .Category "popup" }}
+{{ if .Popup }}
+    {{ template "templates/components/atoms/buttons.html" .Popup }}
+{{ end }}
+{{ if .Script }}
+    {{ template "templates/components/atoms/scripts.html" .Script }}
+{{ end }}
+<div class="form-popup" id={{ .Id }}>
+    <form method={{ .Method }} id={{ .Id }} class={{ .Class }} action={{ .Action }}>
+        {{ range .Inputs }}
+        {{ template "templates/components/atoms/inputs.html" . }}
+        {{ end }}
+        {{ range .Buttons }}
+        {{ template "templates/components/atoms/buttons.html" . }}
+        {{ end }}
+    </form>
+</div>
+{{ end }}
+
+
+{{ if eq .Category "default" }}
+    {{ if ne .Class "" }}
+        {{ if ne .Action "" }}
+            <form method={{ .Method }} class={{ .Class }} id={{ .Id }} action={{ .Action }}>
+        {{ else }}
+            <form method={{ .Method }} class={{ .Class }} id={{ .Id }}>
+        {{ end }}
+    {{ else }}
+        <form method={{ .Method }} id={{ .Id }}>
+    {{ end }}
+    {{ range .Inputs }}
+        {{ template "templates/components/atoms/inputs.html" . }}
+    {{ end }}
+    </form>
+    {{ range .Buttons }}
+    {{ template "templates/components/atoms/buttons.html" . }}
+    {{ end }}
+{{ end }}

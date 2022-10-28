@@ -1,0 +1,7 @@
+{
+  "Port": "8080",
+  "APIHost": "http://162.243.162.251:8080",
+  "SessionManager": "Default",
+  "RedisHost": "http://127.0.0.1:6379",
+  "RedisPassword": "Foobared!"
+}

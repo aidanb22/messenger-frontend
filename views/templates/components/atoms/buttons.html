@@ -1,0 +1,19 @@
+{{ if eq .Category "form" }}
+{{ if ne .Class ""  }}
+ <button type={{ .Type }} class={{ .Class }} form={{ .Id }} value={{ .Type | Upper }}>{{ .Label }}</button>
+{{ else }}
+<button type={{ .Type }} form={{ .Id }} value={{ .Type | Upper }}>{{ .Label }}</button>
+{{ end }}
+{{ end }}
+
+{{ if eq .Category "close-click"  }}
+<button type={{ .Type }} class={{ .Class }} onclick=closeForm({{ .Id }})>{{ .Label }}</button>
+{{ end }}
+
+{{ if eq .Category "open-click"  }}
+{{ if eq .Name "delete" }}
+<button class={{ .Class }} onclick=openForm({{ .Id }})>&#9940;</button>
+{{ else }}
+<button class={{ .Class }} onclick=openForm({{ .Id }})>{{ .Label }}</button>
+{{ end }}
+{{ end }}

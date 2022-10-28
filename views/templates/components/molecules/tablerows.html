@@ -1,0 +1,23 @@
+{{ if eq .Category "default" }}
+    {{ if ne .Class "" }}
+        <tr class={{ .Class }}>
+    {{ else }}
+        <tr>
+    {{ end }}
+    {{ range .TableData }}
+        {{ template "templates/components/atoms/tabledata.html" . }}
+    {{ end }}
+    </tr>
+{{ else if eq .Category "headers" }}
+    <thead>
+    {{ if ne .Class "" }}
+        <tr class={{ .Class }}>
+    {{ else }}
+        <tr>
+    {{ end }}
+    {{ range .TableHeaders }}
+        {{ template "templates/components/atoms/tableheaders.html" . }}
+    {{ end }}
+    </tr>
+    </thead>
+{{ end }}

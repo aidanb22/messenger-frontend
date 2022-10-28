@@ -1,0 +1,7 @@
+{{ if eq .Category "default" }}
+<div class="headercontainer">
+  <h2 class={{ .Class }}>{{ .Label }}</h2>
+</div>
+{{ else if eq .Category "column" }}
+<h2 class={{ .Class }}>{{ .Label }}</h2>
+{{ end }}

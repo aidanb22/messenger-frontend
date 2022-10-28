@@ -1,0 +1,18 @@
+{{ template "templates/components/organisms/header.html" . }}
+<div>
+    {{ if .Auth.Authenticated }}
+    {{ if .Status }}
+    {{ template "templates/components/atoms/alerts.html" .Alert }}
+    {{ end }}
+    {{ template "templates/components/atoms/headings.html" .Heading }}
+    {{ if .Createtask }}
+    {{ template "templates/components/organisms/forms.html" .Createtask }}
+    {{ end }}
+    {{ if eq .Route "tasks/" }}
+    <div class="list-container">
+        {{ template "templates/components/organisms/lists.html" .OverviewMessages }}
+        <div>
+            {{ end }}
+            {{ end }}
+        </div>
+        {{ template "templates/components/organisms/footer.html" . }}

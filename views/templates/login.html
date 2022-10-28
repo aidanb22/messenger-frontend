@@ -1,0 +1,18 @@
+{{ template "templates/components/organisms/header.html" . }}
+<div class="row">
+    {{ if .Status }}
+        {{ template "templates/components/atoms/alerts.html" .Alert }}
+    {{ end }}
+    {{ template "templates/components/atoms/headings.html" .Heading }}
+    {{if .Auth.Authenticated}}
+        <h1>Welcome, {{ .Auth.Username }}</h1>
+    {{else}}
+        <div class="form-container">
+            {{ template "templates/components/organisms/forms.html" .Form }}
+        </div>
+        <div class="text2">
+            <a href="/register">or create a new account</a><br>
+        </div>
+    {{end}}
+</div>
+{{ template "templates/components/organisms/footer.html" . }}

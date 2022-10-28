@@ -1,0 +1,77 @@
+version: "3.8"
+
+services:
+  web-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - redis-container
+      - api-server
+    ports:
+      - 8080:8080
+    networks:
+      - project
+    restart: always
+    environment:
+      PORT: "8080"
+      API_HOST: http://api-server:8081
+      SESSION_MANAGER: "Default"
+      REDIS_HOST: redis-container:6379
+      REDIS_PASSWORD: "redispw"
+      ENV: docker-dev
+
+  redis-container:
+    image: redis:latest
+    restart: always
+    ports:
+      - 6379:6379
+    networks:
+      - project
+    expose:
+      - 6379
+    command: redis-server --save 20 1 --loglevel warning --requirepass redispw
+    volumes:
+      - redis_data_container:/data/db
+
+  api-server:
+    image: messenger-backend_server
+    ports:
+      - 8081:8081
+    networks:
+      - project
+    restart: always
+    environment:
+      MONGO_URI: mongodb://mongodb-container:27017
+      DATABASE: "testDB"
+      TOKEN_SECRET: "SECRET"
+      ROOT_ADMIN: "MasterAdmin"
+      ROOT_PASSWORD: "789xyz"
+      ROOT_EMAIL: "master@example.com"
+      ROOT_GROUP: "MasterAdmins"
+      REGISTRATION: "ON"
+      PORT: "8081"
+      HTTPS: "OFF"
+      CERT: ""
+      KEY: ""
+      ENV: docker-dev
+
+  mongodb-container:
+    image: mongo:latest
+    restart: always
+    ports:
+      - 27017:27017
+    networks:
+      - project
+    expose:
+      - 27017
+    volumes:
+      - mongodb_data_container:/data/db
+
+networks:
+  project:
+    driver: bridge
+
+volumes:
+  redis_data_container:
+  mongodb_data_container:

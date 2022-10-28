@@ -1,0 +1,56 @@
+/* Add styles to the list container */
+.list-container {
+    max-width: 340px;
+    padding: 10px;
+    background-color: white;
+    margin: auto;
+}
+
+ul.linked {
+    text-align: center;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+}
+
+ul.linked li a.pill {
+    background-color: #ddd;
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 16px;
+    word-wrap: break-word
+}
+
+ul.linked a.pill:hover {
+    background-color: #f1f1f1;
+}
+
+.list-filter p {
+    position: absolute;
+    margin-left: 10px;
+}
+
+.pill input[type=checkbox] {
+    float: right;
+    text-align: right;
+}
+
+.linked.filter {
+    width: 100%; /* Full-width */
+    font-size: 16px; /* Increase font-size */
+    padding: 12px 20px 12px 40px; /* Add some padding */
+    border: 1px solid #ddd; /* Add a grey border */
+    margin-bottom: 12px; /* Add some space below the input */
+}
+
+@media screen and (max-width: 775px) {
+    ul.linked  {
+        max-width: 300px;
+    }
+}

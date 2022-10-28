@@ -1,0 +1,44 @@
+<script>
+    function toggleMenu() {
+        var x = document.getElementById("myTopnav");
+        if (x.className === "topnav") {
+            x.className += " responsive";
+        } else {
+            x.className = "topnav";
+        }
+    }
+</script>
+<div class="nav">
+    <link rel="stylesheet" href="/static/styles/nav.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <ul class="topnav" id="myTopnav">
+        <li><a class="nav active" href="/">Home</a></li>
+        <li><a class="nav" href="/about">About</a></li>
+        {{ if .Auth.Authenticated }}
+            <li class="dropdown">
+                <a href="/tasks" href="javascript:void(0)" class="nav dropbtn">tasks <i class="fa fa-caret-down"></i><i class="fa fa-caret-up"></i></a>
+                <div class="dropdown-content">
+                    <a class="nav" href="/tasks/create">New</a>
+                    <a class="nav" href="/tasks/open">Open</a>
+                </div>
+            </li>
+            <li class="right"><a class="nav" href="/logout">Logout</a></li>
+            <li class="right"><a class="nav" href="/account">My Account</a></li>
+            {{ if eq .Auth.Role "admin" }}
+                <li class="right"><a class="nav" href="/admin">Admin</a></li>
+            {{ end }}
+        {{ else }}
+            <li class="right"><a class="nav" href="/login">Login</a></li>
+        {{ end }}
+        <li class="open-icon">
+            <a href="javascript:void(0);" class="nav open-icon" onclick="toggleMenu()">
+                <i class="fa fa-bars"></i>
+            </a>
+        </li>
+        <li class="close-icon">
+            <a href="javascript:void(0);" class="nav close-icon" onclick="toggleMenu()">
+                <i class="fa fa-close"></i>
+            </a>
+        </li>
+    </ul>
+</div>

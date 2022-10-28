@@ -1,0 +1,24 @@
+{{ if ne .Class "" }}
+    {{ if ne .Id "" }}
+        <div class={{ .Class }} id={{ .Id }}>
+    {{ else }}
+        <div class={{ .Class }}>
+    {{ end }}
+{{ else }}
+    {{ if ne .Id "" }}
+        <div id={{ .Id }}>
+    {{ else }}
+        <div>
+    {{ end }}
+{{ end }}
+{{ if ne .Heading.Label "" }}
+    {{ template "templates/components/atoms/headings.html" .Heading }}
+{{ end }}
+{{ if eq .Category "links" }}
+    {{range .Links}}
+    {{ template "templates/components/atoms/links.html" . }}
+    {{ end }}
+{{ else if eq .Category "list" }}
+    {{ template "templates/components/organisms/lists.html" .List }}
+{{ end }}
+</div>

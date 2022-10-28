@@ -1,0 +1,13 @@
+{{ if .Script }}
+    {{ template "templates/components/atoms/scripts.html" .Script }}
+{{ end }}
+{{ if eq .Category "default" }}
+    {{ if ne .Class "" }}
+        <table class={{ .Class }} id={{ .Id }}>
+    {{ else }}
+        <table id={{ .Id }}>
+    {{ end }}
+    {{ template "templates/components/molecules/tablerows.html" .TableHead }}
+    {{ template "templates/components/molecules/tablebodies.html" .TableBody }}
+        </table>
+{{ end }}

@@ -1,0 +1,17 @@
+<!--<script>
+    $(document).ready(function(){
+        setTimeout(function(){$(".alert-prompt.information").attr("display", "none"); }, 2000);
+    });
+</script>-->
+{{ if eq .Category "default" }}
+<div class="alert-prompt information">
+{{ else if eq .Category "success" }}
+<div class="alert-prompt success">
+{{ else if eq .Category "error" }}
+<div class="alert-prompt error">
+{{ end }}
+    {{ if .ClickClose }}
+    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+    {{ end }}
+    {{ .task }}
+</div>

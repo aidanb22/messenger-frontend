@@ -1,0 +1,7 @@
+{{ if eq .Category "default" }}
+    {{ if ne .Class "" }}
+        <th class={{ .Class }}>{{ .Label }}</th>
+    {{ else }}
+        <th>{{ .Label }}</th>
+    {{ end }}
+{{ end }}

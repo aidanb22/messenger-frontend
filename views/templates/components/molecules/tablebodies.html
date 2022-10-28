@@ -1,0 +1,11 @@
+{{ if eq .Category "default" }}
+    {{ if ne .Class "" }}
+        <tbody class={{ .Class }}>
+    {{ else }}
+        <tbody>
+    {{ end }}
+    {{ range .TableRows }}
+        {{ template "templates/components/molecules/tablerows.html" . }}
+    {{ end }}
+        </tbody>
+{{ end }}

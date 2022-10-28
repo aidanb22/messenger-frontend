@@ -1,0 +1,57 @@
+{{ if ne .Label "" }}
+    <label for={{ .Id }}>{{ .Label }}</label><br>
+{{ end }}
+
+{{ if eq .Category "submit" }}
+    {{ if ne .Class "" }}
+    <input type={{ .Type }} class={{ .Class }} value={{ .Value }}><br>
+    {{ else }}
+    <input type={{ .Type }} value={{ .Value }}><br>
+    {{ end }}
+
+{{ else if eq .Category "checkbox" }}
+
+    {{ if .Checked }}
+    <input type="checkbox" id={{ .Id }} class={{ .Class }} onclick="postCheck({{ .Value }}, {{ .Id }}, event)" checked>
+    {{ else }}
+    <input type="checkbox" id={{ .Id }} class={{ .Class }} onclick="postCheck({{ .Value }}, {{ .Id }}, event)">
+    {{ end }}
+
+{{ else if eq .Category "input" }}
+
+    {{ if ne .Value "" }}
+    <input type={{ .Type }} id={{ .Id }} name={{ .Id }} value={{ .Value }}><br>
+    {{ else }}
+    <input type={{ .Type }} id={{ .Id }} name={{ .Id }}><br>
+    {{ end }}
+
+{{ else if eq .Category "select" }}
+
+    {{ if .Multi }}
+    <select name={{ .Id }} id={{ .Id }} size="4" multiple>
+    {{ else }}
+    <select name={{ .Id }} id={{ .Id }}>
+    {{ end }}
+        {{range .Options}}
+        {{ if .Selected }}
+            <option value={{ .Value }} selected>{{ .Label }}</option>
+        {{ else }}
+            <option value={{ .Value }}>{{ .Label }}</option>
+        {{ end }}
+        {{ end }}
+    </select><br>
+
+{{ else if eq .Category "text" }}
+
+<textarea name={{ .Id }} rows={{ .Rows }} cols={{ .Cols }}>
+{{ .Value }}
+</textarea><br>
+
+{{ else if eq .Category "search" }}
+    {{ if .Script }}
+        {{ template "templates/components/atoms/scripts.html" .Script }}
+    {{ end }}
+    <div class="list-filter">
+        <p>&#x1F50D;</p><input type="text" class={{ .Class }} id={{ .Id }} onkeyup="searchList({{ .Type }}, {{ .Id }})" placeholder={{ .Value }}><br>
+    </div>
+{{ end }}
